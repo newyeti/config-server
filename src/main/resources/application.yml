@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/newyeti/config-server.git
+          uri: https://github.com/newyeti/configuration.git
           clone-on-start: true
 
 eureka:
