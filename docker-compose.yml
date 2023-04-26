@@ -7,3 +7,7 @@ services:
     pull_policy: always
     ports:
       - 9091:9091
+    environment:
+      - CONFIG_SERVER_GIT_URI=https://github.com/newyeti/configuration.git
+      - EUREKA_SERVICE_URL=http://eureka:password@newyeti-discovery-server:8761/eureka
+      

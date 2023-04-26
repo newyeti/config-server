@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/newyeti/configuration.git
+          uri: ${CONFIG_SERVER_GIT_URI}
           clone-on-start: true
 
 eureka:
@@ -16,6 +16,6 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://eureka:password@newyeti-discovery-server:8761/eureka
+      defaultZone: ${EUREKA_SERVICE_URL}
   instance:
     hostname: newyeti-discovery-server
