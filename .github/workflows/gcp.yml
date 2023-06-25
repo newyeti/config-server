@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: config-server
-      PROJECT_ID: newyeti
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -39,7 +39,7 @@ jobs:
     - name: Automatic Tagging of Releases
       id: increment-git-tag
       run: |
-        bash ./scripts/git_update.sh -v patch
+        bash ./scripts/git_update.sh -v major
     
     - name: Configure Docker Client
       run: |-
@@ -54,4 +54,3 @@ jobs:
         -Djib.from.image=eclipse-temurin \
         -Djib.to.image=us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
 
-    
