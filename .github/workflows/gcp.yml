@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: config-server
+      PROJECT_ID: ${{secrets.PROJECT_ID}}
+      SECRET_ID: ${{secrets.SERVICE_ACCOUNT_KEY}}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -23,8 +25,8 @@ jobs:
 
     - uses: google-github-actions/setup-gcloud@main
       with:
-        service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-        project_id: ${{ secrets.PROJECT_ID }}
+        service_account_key: $SECRET_ID
+        project_id: $PROJECT_ID
         export_default_credentials: true
 
     - name: Automatic Tagging of Releases
