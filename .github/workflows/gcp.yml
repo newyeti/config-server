@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      
+
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
@@ -43,7 +43,7 @@ jobs:
       run: |-
         mvn compile com.google.cloud.tools:jib-maven-plugin:3.1.1:build \
         -Djib.from.image=eclipse-temurin \
-        -Djib.to.image=us-west2-docker.pkg.dev/$PROJECT_ID/$IMAGE_NAME
+        -Djib.to.image=us-central1-docker.pkg.dev/$PROJECT_ID/config-server-images/$IMAGE_NAME
         -Djib.to.tags=latest,$GIT_TAG
 
     
