@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: config-server
-      PROJECT_ID: ${{secrets.PROJECT_ID}}
-      SECRET_ID: ${{secrets.SERVICE_ACCOUNT_KEY}}
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      SECRET_ID: ${{ secrets.SERVICE_ACCOUNT_KEY }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
