@@ -38,6 +38,11 @@ jobs:
 
     if: github.event_name == 'push'
 
+    env:
+      DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+      DOCKER_HUB_KEY: ${{ secrets.DOCKER_HUB_KEY }}
+      IMAGE_NAME: newyeti-config-server
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -48,10 +53,6 @@ jobs:
         cache: maven
 
     - name: Push Docker Image to Docker Hub
-      env:
-        DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-        DOCKER_HUB_KEY: ${{ secrets.DOCKER_HUB_KEY }}
-        IMAGE_NAME: newyeti-config-server
       run: |-
         mvn compile com.google.cloud.tools:jib-maven-plugin:3.3.2:build \
         -Djib.from.image=eclipse-temurin \
