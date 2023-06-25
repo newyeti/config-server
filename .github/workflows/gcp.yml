@@ -43,7 +43,7 @@ jobs:
       run: |-
         mvn compile com.google.cloud.tools:jib-maven-plugin:3.1.1:build \
         -Djib.from.image=eclipse-temurin \
-        -Djib.to.image=us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/config-server-images/$IMAGE_NAME
+        -Djib.to.image=us-central1-docker.pkg.dev/newyeti/config-server-images/$IMAGE_NAME
         -Djib.to.tags=latest,$GIT_TAG
 
     
