@@ -26,12 +26,12 @@ jobs:
       uses: 'google-github-actions/auth@v1'
       with:
         credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY }}'
-        version: '>= 416.0.0'
 
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
       with:
         project_id: ${{ env.PROJECT_ID }}
+        version: '>= 416.0.0'
 
     - name: 'Use gcloud CLI'
       run: 'gcloud info'
@@ -50,7 +50,7 @@ jobs:
       env:
         GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |-
-        mvn compile com.google.cloud.tools:jib-maven-plugin:3.1.1:build \
+        mvn compile com.google.cloud.tools:jib-maven-plugin:3.3.2:build \
         -Djib.from.image=eclipse-temurin \
         -Djib.to.image=us-central1-docker.pkg.dev/$PROJECT_ID/config-server-images/$IMAGE_NAME
         -Djib.to.tags=latest,$GIT_TAG
