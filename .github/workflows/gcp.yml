@@ -8,6 +8,7 @@ on:
 jobs:
   build-push-gcp:
     runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, 'gcp build')
     env:
       IMAGE_NAME: config-server
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
@@ -39,7 +40,7 @@ jobs:
     - name: Automatic Tagging of Releases
       id: increment-git-tag
       run: |
-        bash ./scripts/git_update.sh -v major
+        bash ./scripts/git_update.sh -v patch
     
     - name: Configure Docker Client
       run: |-
