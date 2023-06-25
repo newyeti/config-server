@@ -52,6 +52,6 @@ jobs:
       run: |-
         mvn compile com.google.cloud.tools:jib-maven-plugin:3.3.2:build \
         -Djib.from.image=eclipse-temurin \
-        -Djib.to.image=us-central1-docker.pkg.dev/$PROJECT_ID/config-server-images/$IMAGE_NAME:$GIT_TAG
+        -Djib.to.image=us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
 
     
