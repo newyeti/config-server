@@ -55,8 +55,8 @@ jobs:
       run: |-
         mvn compile com.google.cloud.tools:jib-maven-plugin:3.3.2:build \
         -Djib.from.image=eclipse-temurin \
-        -Djib.to.image=registry.hub.docker.com/$DOCKER_HUB_USERNAME/$IMAGE_NAME
-        -Djib.to.auth.username=$DOCKER_HUB_USERNAME
-        -Djib.to.auth.password=$DOCKER_HUB_KEY
+        -Djib.to.image=registry.hub.docker.com/${{env.DOCKER_HUB_USERNAME}}/$IMAGE_NAME
+        -Djib.to.auth.username=${{ env.DOCKER_HUB_USERNAME }}
+        -Djib.to.auth.password=${{ env.DOCKER_HUB_KEY }}
 
 
