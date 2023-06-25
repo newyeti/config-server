@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: config-server
+      PROJECT_ID: newyeti
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -24,7 +25,7 @@ jobs:
     - uses: google-github-actions/setup-gcloud@v1
       with:
         service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-        project_id: ${{ secrets.PROJECT_ID }}
+        project_id: ${{ env.PROJECT_ID }}
         export_default_credentials: true
 
     - name: Automatic Tagging of Releases
@@ -43,7 +44,7 @@ jobs:
       run: |-
         mvn compile com.google.cloud.tools:jib-maven-plugin:3.1.1:build \
         -Djib.from.image=eclipse-temurin \
-        -Djib.to.image=us-central1-docker.pkg.dev/newyeti/config-server-images/$IMAGE_NAME
+        -Djib.to.image=us-central1-docker.pkg.dev/$PROJECT_ID/config-server-images/$IMAGE_NAME
         -Djib.to.tags=latest,$GIT_TAG
 
     
