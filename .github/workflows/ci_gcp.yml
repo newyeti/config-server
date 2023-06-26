@@ -8,7 +8,7 @@ on:
 jobs:
   build-push-gcp:
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.message, 'gcp build')
+    # if: contains(github.event.head_commit.message, 'gcp build')
     env:
       IMAGE_NAME: config-server
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
@@ -50,8 +50,5 @@ jobs:
     - name: Push Docker Image to Artifact Registry
       env:
         GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-      run: |-
-        mvn compile com.google.cloud.tools:jib-maven-plugin:3.3.2:build \
-        -Djib.from.image=eclipse-temurin \
-        -Djib.to.image=us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+      run: mvn -Denv=gcp --file pom.xml clean compile jib:build
 
