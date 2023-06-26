@@ -59,14 +59,15 @@ jobs:
           echo "No major/minor version found. Using default tag 'patch'"
           GIT_TAG_TYPE="patch"
         fi
+
         echo "Git Tag Type="$GIT_TAG_TYPE
-        echo ::set-output name=git-tag-type::$GIT_TAG_TYPE
+        echo "GIT_TAG_TYPE=${GIT_TAG_TYPE}" >> $GITHUB_ENV
         exit 0
         
     - name: Automatic Tagging of Releases
       id: increment-git-tag
-      env:
-        GIT_TAG_TYPE: ${{ steps.determine-git-tag.git-tag-type }}
+      # env:
+      #   GIT_TAG_TYPE: ${{ steps.determine-git-tag.git-tag-type }}
       run: |
         bash ./scripts/git_update.sh -v $GIT_TAG_TYPE
     
@@ -79,4 +80,3 @@ jobs:
       env:
         GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: mvn -Denv=gcp --file pom.xml clean compile jib:build
-      
