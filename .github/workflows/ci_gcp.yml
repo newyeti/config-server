@@ -55,6 +55,7 @@ jobs:
         fi
         echo "Git Tag Type=".$GIT_TAG_TYPE
         echo ::set-output name=git-tag-type::$GIT_TAG_TYPE
+        exit 0
         
     - name: Automatic Tagging of Releases
       id: increment-git-tag
