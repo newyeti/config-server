@@ -32,7 +32,7 @@ jobs:
     - name: Build with Maven
       run: mvn -Denv=dev --file pom.xml clean compile
   
-  build-docker-image:
+  build-push-dockerhub:
     
     runs-on: ubuntu-latest
 
@@ -60,6 +60,6 @@ jobs:
       run: |-
         mvn compile com.google.cloud.tools:jib-maven-plugin:3.3.2:build \
         -Djib.from.image=eclipse-temurin:19.0.2_7-jre-alpine \
-        -Djib.to.image=registry.hub.docker.com/sachindramaharjan/$IMAGE_NAME
+        -Djib.to.image=registry.hub.docker.com/${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME
 
 
