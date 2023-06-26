@@ -32,7 +32,7 @@
         </property>
       </activation>
       <properties>
-        <docker.registry>registry.hub.docker.com/${DOCKERHUB_USERNAME}</docker.registry>
+        <docker.registry>registry.hub.docker.com/${env.DOCKERHUB_USERNAME}</docker.registry>
       </properties>
     </profile>
     <profile>
@@ -44,7 +44,7 @@
         </property>
       </activation>
       <properties>
-        <docker.registry>gcr.io/${PROJECT_ID}</docker.registry>
+        <docker.registry>gcr.io/${env.PROJECT_ID}</docker.registry>
       </properties>
     </profile>
   </profiles>
