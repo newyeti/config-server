@@ -10,6 +10,10 @@ do
   esac
 done
 
+if [[ $VERSION == "" ]]; then
+  VERSION="patch"
+fi
+
 # get highest tag number, and add v0.1.0 if doesn't exist
 git fetch --prune --unshallow 2>/dev/null
 CURRENT_VERSION=`git describe --abbrev=0 --tags 2>/dev/null`

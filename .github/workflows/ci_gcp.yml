@@ -37,10 +37,29 @@ jobs:
     - name: 'Use gcloud CLI'
       run: 'gcloud info'
 
+    - name: 'Get Git Tag from commit message'
+      id: determine-git-tag
+      env:
+        COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+      run: |-
+        GIT_TAG_TYPE="patch"
+        if [[ "${COMMIT_MESSAGE}" == *major version* ]]; then
+          echo "Found major version in commit message"
+          GIT_TAG_TYPE="major"
+        elif [[ "${COMMIT_MESSAGE}" == *minor version* ]]; then
+          echo "Found minor version in commit message"
+          GIT_TAG_TYPE="minor"
+        else
+          echo "No major/minor version found. Using default tag 'patch'"
+          GIT_TAG_TYPE="patch"
+        fi
+        echo "Git Tag Type=".$GIT_TAG_TYPE
+        echo ::set-output name=git-tag-type::$GIT_TAG_TYPE
+        
     - name: Automatic Tagging of Releases
       id: increment-git-tag
       run: |
-        bash ./scripts/git_update.sh -v patch
+        bash ./scripts/git_update.sh -v ${{ steps.determine-git-tag.git-tag-type }}
     
     - name: Configure Docker Client
       run: |-
