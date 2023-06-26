@@ -57,9 +57,5 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Push Docker Image to Docker Hub
-      run: |-
-        mvn compile com.google.cloud.tools:jib-maven-plugin:3.3.2:build \
-        -Djib.from.image=eclipse-temurin:19.0.2_7-jre-alpine \
-        -Djib.to.image=registry.hub.docker.com/${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME
-
+      run: mvn -Denv=dev clean compile jib:build
 
