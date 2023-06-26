@@ -33,6 +33,7 @@
       </activation>
       <properties>
         <docker.registry>registry.hub.docker.com/${env.DOCKERHUB_USERNAME}</docker.registry>
+        <git.tag>${env.GIT_TAG}</git.tag>
       </properties>
     </profile>
     <profile>
@@ -45,6 +46,7 @@
       </activation>
       <properties>
         <docker.registry>us-central1-docker.pkg.dev/${env.PROJECT_ID}/images</docker.registry>
+        <git.tag>${env.GIT_TAG}</git.tag>
       </properties>
     </profile>
   </profiles>
@@ -121,7 +123,7 @@
             <image>eclipse-temurin@sha256:dde223014bd6917ea00d9eb370add424dc5dfcbcfcb8e8efac15a050563d312e</image>
           </from>
           <to>
-            <image>${docker.registry}/newyeti-${project.artifactId}:${env.GIT_TAG}</image>
+            <image>${docker.registry}/newyeti-${project.artifactId}:${git.tag}</image>
           </to>
         </configuration>
       </plugin>
