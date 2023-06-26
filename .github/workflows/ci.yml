@@ -21,6 +21,7 @@ jobs:
     
     env:
       GIT_TAG: latest
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
     if: github.event_name == 'pull_request'
 
