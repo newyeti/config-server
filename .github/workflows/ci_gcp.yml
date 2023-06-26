@@ -13,7 +13,7 @@ jobs:
       contents: read
       pull-requests: read
       actions: write
-      
+
     if: contains(github.event.head_commit.message, 'gcp')
     env:
       IMAGE_NAME: config-server
@@ -65,8 +65,10 @@ jobs:
         
     - name: Automatic Tagging of Releases
       id: increment-git-tag
+      env:
+        GIT_TAG_TYPE: ${{ steps.determine-git-tag.git-tag-type }}
       run: |
-        bash ./scripts/git_update.sh -v ${{ steps.determine-git-tag.git-tag-type }}
+        bash ./scripts/git_update.sh -v $GIT_TAG_TYPE
     
     - name: Configure Docker Client
       run: |-
@@ -77,4 +79,4 @@ jobs:
       env:
         GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: mvn -Denv=gcp --file pom.xml clean compile jib:build
-
+      
