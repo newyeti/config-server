@@ -9,7 +9,8 @@ jobs:
   build-push-gcp:
     runs-on: ubuntu-latest
     
-    permissions: write-all
+    permissions: 
+      contents: write
     
     if: contains(github.event.head_commit.message, 'gcp')
     env:
