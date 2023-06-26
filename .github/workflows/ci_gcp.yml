@@ -8,6 +8,12 @@ on:
 jobs:
   build-push-gcp:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: read
+      actions: write
+      
     if: contains(github.event.head_commit.message, 'gcp')
     env:
       IMAGE_NAME: config-server
