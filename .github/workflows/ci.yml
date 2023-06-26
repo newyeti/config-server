@@ -45,6 +45,7 @@ jobs:
     env:
       IMAGE_NAME: newyeti-config-server
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      GIT_TAG: latest
 
     steps:
     - uses: actions/checkout@v3
