@@ -64,8 +64,6 @@ jobs:
         
     - name: Automatic Tagging of Releases
       id: increment-git-tag
-      # env:
-      #   GIT_TAG_TYPE: ${{ steps.determine-git-tag.git-tag-type }}
       run: |
         bash ./scripts/git_update.sh -v $GIT_TAG_TYPE
     
