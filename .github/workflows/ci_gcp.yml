@@ -8,7 +8,7 @@ on:
 jobs:
   build-push-gcp:
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.message, 'gcp build')
+    if: contains(github.event.head_commit.message, 'gcp')
     env:
       IMAGE_NAME: config-server
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
@@ -43,17 +43,17 @@ jobs:
         COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
       run: |-
         GIT_TAG_TYPE="patch"
-        if [[ "${COMMIT_MESSAGE}" == *major version* ]]; then
+        if [[ "${COMMIT_MESSAGE}" == *"major.version"* ]]; then
           echo "Found major version in commit message"
           GIT_TAG_TYPE="major"
-        elif [[ "${COMMIT_MESSAGE}" == *minor version* ]]; then
+        elif [[ "${COMMIT_MESSAGE}" == *"minor.version"* ]]; then
           echo "Found minor version in commit message"
           GIT_TAG_TYPE="minor"
         else
           echo "No major/minor version found. Using default tag 'patch'"
           GIT_TAG_TYPE="patch"
         fi
-        echo "Git Tag Type=".$GIT_TAG_TYPE
+        echo "Git Tag Type="$GIT_TAG_TYPE
         echo ::set-output name=git-tag-type::$GIT_TAG_TYPE
         exit 0
         
