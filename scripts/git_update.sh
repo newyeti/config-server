@@ -64,6 +64,5 @@ else
   echo "Already a tag on this commit"
 fi
 
-echo ::set-output name=git-tag::$NEW_TAG
+echo "GIT_TAG=${GIT_TAG_TYPE}" >> $GITHUB_ENV
 
-exit 0
