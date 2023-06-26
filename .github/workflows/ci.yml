@@ -12,7 +12,7 @@ on:
   push:
     branches: [ "develop" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "develop", "main" ]
 
 jobs:
   build:
@@ -58,7 +58,8 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Push Docker Image to Docker Hub
-      run: mvn -Denv=dev clean compile jib:build
-
+      env:
+        GIT_TAG: latest
+      run: mvn -Denv=dev --file pom.xml clean compile jib:build
 
 
