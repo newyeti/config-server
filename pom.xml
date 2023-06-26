@@ -114,6 +114,9 @@
         <artifactId>jib-maven-plugin</artifactId>
         <version>3.3.1</version>
         <configuration>
+          <container>
+            <mainClass>com.newyeti.configserver.ConfigServerApplication</mainClass>
+          </container>
           <from>
             <image>eclipse-temurin@sha256:dde223014bd6917ea00d9eb370add424dc5dfcbcfcb8e8efac15a050563d312e</image>
           </from>
