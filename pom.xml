@@ -44,7 +44,7 @@
         </property>
       </activation>
       <properties>
-        <docker.registry>gcr.io/${env.PROJECT_ID}</docker.registry>
+        <docker.registry>us-central1-docker.pkg.dev/${env.PROJECT_ID}/images</docker.registry>
       </properties>
     </profile>
   </profiles>
