@@ -37,7 +37,6 @@ logging:
 
 spring:
   config:
-    #import: configserver:http://config-server:9091
     activate:
       on-profile:
       - docker
