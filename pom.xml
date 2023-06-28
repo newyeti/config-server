@@ -48,7 +48,7 @@
       <properties>
         <docker.registry>us-central1-docker.pkg.dev/${env.PROJECT_ID}/images</docker.registry>
         <git.tag>${env.GIT_TAG}</git.tag>
-        <from.image>newyeti-jre-alipine:v0.1.1</from.image>
+        <from.image>us-central1-docker.pkg.dev/${env.PROJECT_ID}/images/newyeti-jre-alipine:v0.1.1</from.image>
       </properties>
     </profile>
   </profiles>
