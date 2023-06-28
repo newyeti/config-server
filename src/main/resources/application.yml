@@ -5,11 +5,14 @@ spring:
   application:
     name: CONFIG-SERVER
   cloud:
+    discovery:
+      enabled: false
     config:
       server:
         git:
           uri: ${CONFIG_SERVER_GIT_URI}
           clone-on-start: true
+          
 
 management:
   endpoints:
@@ -34,13 +37,11 @@ logging:
 
 spring:
   config:
-    import: configserver:http://config-server:9091
+    #import: configserver:http://config-server:9091
     activate:
       on-profile:
       - docker
   cloud:
-    config:
-        enabled: true
     discovery:
       enabled: true
 
